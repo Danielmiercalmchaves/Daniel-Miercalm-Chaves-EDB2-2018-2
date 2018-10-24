@@ -3,6 +3,30 @@ altura = 0
 recente = 0
 choose = 0
 
+def swap(x, y):
+	temp = arvore[x]
+	arvore[x] = arvore[y]
+	arvore[y] = temp
+
+def subir(ref):
+	if ref>0:
+		pai = int((ref-1)/2)
+		if arvore[ref]>arvore[pai]:
+			swap(pai, ref)
+			return subir(pai)
+
+def descer(ref):
+		alt = haltura(ref)
+		print("ALT:", alt, " ALTURA:", altura)
+		if alt <= altura: #prob
+			print("PAi:", arvore[ref], " FILHO:", arvore[2*ref+1])
+			if arvore[ref] < arvore[2*ref+1]:
+				swap(ref, 2*ref+1)
+				return descer(2*ref+1)
+			if arvore[ref] < arvore[2*ref+2]:
+				swap(ref, 2*ref+2)
+				return descer(2*ref+2)
+
 def haltura(ref):
 	pai = int((ref-1)/2)
 	cont = 2
@@ -73,7 +97,7 @@ def buscahorizontal(chave, ref, alt):
 #MAIN
 
 arvore.append(input("Defina a raiz: "))
-while choose!='6':
+while choose!='9':
 	print()
 	print()
 	print("_____MENU_____")
@@ -83,7 +107,10 @@ while choose!='6':
 	print(" 3 - Buscar elemento")
 	print(" 4 - Remover elemento")
 	print(" 5 - Vetor")
-	print(" 6 - Sair")
+	print(" 6 - Subir elemento")
+	print(" 7 - Descer elemento")
+	print(" 8 - Heapeficar arvore")
+	print(" 9 - Sair")
 	print()
 	print("______________")
 	print()
@@ -134,3 +161,15 @@ while choose!='6':
 	if choose=='5':
 		for i in range(0, len(arvore)):
 			print(arvore[i], end=' ')
+	
+	if choose=='6':
+		temp=input("Digite a chave a ser subida: ")
+		temp=buscavertical(temp, 0, 0)
+		subir(temp)
+
+	if choose=='7':
+		temp=input("Digite a chave a ser descida: ")
+		temp=buscavertical(temp, 0, 0)
+		descer(temp)		
+	
+#	if choose=='8':
