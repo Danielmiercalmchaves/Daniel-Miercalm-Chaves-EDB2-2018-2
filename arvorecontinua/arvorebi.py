@@ -21,6 +21,8 @@ def descer(ref):
 			alt = 0
 		if alt <= altura and altura!=0:
 			x = int(arvore[ref])
+			if x==0:
+				return
 			y = int(arvore[2*ref+1])
 			z = int(arvore[2*ref+2])
 			if x>z and z<y and z!=0:
