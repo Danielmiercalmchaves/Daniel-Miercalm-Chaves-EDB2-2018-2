@@ -11,21 +11,24 @@ def swap(x, y):
 def subir(ref):
 	if ref>0:
 		pai = int((ref-1)/2)
-		if arvore[ref]>arvore[pai]:
+		if int(arvore[ref])<int(arvore[pai]):
 			swap(pai, ref)
 			return subir(pai)
 
 def descer(ref):
 		alt = haltura(ref)
-		print("ALT:", alt, " ALTURA:", altura)
-		if alt <= altura: #prob
-			print("PAi:", arvore[ref], " FILHO:", arvore[2*ref+1])
-			if arvore[ref] < arvore[2*ref+1]:
-				swap(ref, 2*ref+1)
-				return descer(2*ref+1)
-			if arvore[ref] < arvore[2*ref+2]:
+		if ref==0:
+			alt = 0
+		if alt <= altura and altura!=0:
+			x = int(arvore[ref])
+			y = int(arvore[2*ref+1])
+			z = int(arvore[2*ref+2])
+			if x>z and z<y and z!=0:
 				swap(ref, 2*ref+2)
 				return descer(2*ref+2)
+			if x>y and y!=0:
+				swap(ref, 2*ref+1)
+				return descer(2*ref+1)
 
 def haltura(ref):
 	pai = int((ref-1)/2)
@@ -97,7 +100,7 @@ def buscahorizontal(chave, ref, alt):
 #MAIN
 
 arvore.append(input("Defina a raiz: "))
-while choose!='9':
+while choose!='8':
 	print()
 	print()
 	print("_____MENU_____")
@@ -109,8 +112,7 @@ while choose!='9':
 	print(" 5 - Vetor")
 	print(" 6 - Subir elemento")
 	print(" 7 - Descer elemento")
-	print(" 8 - Heapeficar arvore")
-	print(" 9 - Sair")
+	print(" 8 - Sair")
 	print()
 	print("______________")
 	print()
@@ -172,4 +174,3 @@ while choose!='9':
 		temp=buscavertical(temp, 0, 0)
 		descer(temp)		
 	
-#	if choose=='8':
