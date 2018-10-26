@@ -30,6 +30,11 @@ def descer(ref):
 				swap(ref, 2*ref+1)
 				return descer(2*ref+1)
 
+def heapify(ref):
+	if ref>=0:
+		descer(ref)
+		return heapify(ref-1)
+
 def haltura(ref):
 	pai = int((ref-1)/2)
 	cont = 2
@@ -100,7 +105,7 @@ def buscahorizontal(chave, ref, alt):
 #MAIN
 
 arvore.append(input("Defina a raiz: "))
-while choose!='8':
+while choose!='9':
 	print()
 	print()
 	print("_____MENU_____")
@@ -112,7 +117,8 @@ while choose!='8':
 	print(" 5 - Vetor")
 	print(" 6 - Subir elemento")
 	print(" 7 - Descer elemento")
-	print(" 8 - Sair")
+	print(" 8 - Heapificar")
+	print(" 9 - Sair")
 	print()
 	print("______________")
 	print()
@@ -172,5 +178,8 @@ while choose!='8':
 	if choose=='7':
 		temp=input("Digite a chave a ser descida: ")
 		temp=buscavertical(temp, 0, 0)
-		descer(temp)		
+		descer(temp)	
+
+	if choose=='8':
+		heapify(len(arvore)-1)	
 	
